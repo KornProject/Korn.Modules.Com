@@ -1,5 +1,6 @@
 ﻿using System;
 using Korn.Utils;
+using Korn.Com.Internal;
 using System.Threading;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
