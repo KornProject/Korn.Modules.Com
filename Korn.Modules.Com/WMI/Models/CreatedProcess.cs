@@ -1,7 +1,6 @@
 ﻿#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-namespace Korn.Com;
-
-public unsafe class WMIProcessIntance
+namespace Korn.Com.Wmi;
+public unsafe class CreatedProcess
 {
     public int ID;                // UInt32 ProcessId 
     public int ParentID;          // UInt32 ParentProcessId

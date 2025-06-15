@@ -1,12 +1,12 @@
 ﻿using Korn.Utils;
 using System;
 
-namespace Korn.Com;
-public unsafe class WMIContext : IDisposable
+namespace Korn.Com.Wmi.Internal;
+public unsafe class OleContext : IDisposable
 {
     const uint WBEM_FLAG_SEND_STATUS = 0x80;
 
-    public WMIContext()
+    public OleContext()
     {
         int result;
 
@@ -64,5 +64,5 @@ public unsafe class WMIContext : IDisposable
         services.Release();
     }
 
-    ~WMIContext() => Dispose();
+    ~OleContext() => Dispose();
 }

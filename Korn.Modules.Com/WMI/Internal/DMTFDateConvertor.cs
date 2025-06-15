@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace Korn.Com;
+namespace Korn.Com.Wmi.Internal;
 public static unsafe class DMTFDateConvertor
 {
     static readonly ushort[] DaysArray = [0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];

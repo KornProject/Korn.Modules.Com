@@ -1,7 +1,9 @@
-﻿using Korn.Com;
+﻿using Korn.Com.Wmi;
 
-var processWatcher = new WMIProcessWatcher();
-processWatcher.SetProcessCreatedHandler(process => Console.WriteLine(process.Name));
+var processWatcher = new ProcessWatcher();
+
+processWatcher.ProcessStarted += process => Console.WriteLine($"started: {process.Name}");
+processWatcher.ProcessStopped += process => Console.WriteLine($"stopped: {process.Name}");
 
 Thread.Sleep(5000);
 processWatcher.Dispose();
