@@ -1,6 +1,4 @@
-﻿using Korn.Utils;
-using System;
-using System.Diagnostics;
+﻿using System;
 
 namespace Korn.Com;
 public unsafe class WMIProcessWatcher : IDisposable
@@ -9,12 +7,11 @@ public unsafe class WMIProcessWatcher : IDisposable
     {
         context = new WMIContext();
 
-        var sink = WbemObjectSinkImpl.Create();
-        this.sink = sink;
+        sink = WbemObjectSinkImpl.Create();
         sink.AddRef();
         sinkImplementation = sink.GetImplementation();
 
-        context.ExecNotificationQuery("SELECT * FROM __InstanceCreationEvent WITHIN 1 WHERE TargetInstance ISA 'Win32_Process'", *(void**)&sink);
+        context.ExecNotificationQuery("SELECT * FROM __InstanceCreationEvent WITHIN 1 WHERE TargetInstance ISA 'Win32_Process'", sink);
     }
 
     WMIContext context;
@@ -23,11 +20,17 @@ public unsafe class WMIProcessWatcher : IDisposable
 
     public void SetProcessCreatedHandler(WMIProcessCreatedDelegate? handler) => sinkImplementation->SetProcessStartedHandler(handler);
 
+    bool disposed;
     public void Dispose()
     {
-        var sink = this.sink;
-        context.CancelAsyncCall(*(void**)&sink);
-        context.Dispose();        
+        if (disposed)
+            return;
+        disposed = true;
+
+        context.CancelAsyncCall(sink);
         sink.Release();
+        context.Dispose();        
     }
+
+    ~WMIProcessWatcher() => Dispose();
 }

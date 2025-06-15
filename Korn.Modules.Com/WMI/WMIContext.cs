@@ -38,7 +38,7 @@ public unsafe class WMIContext : IDisposable
     WbemLocator locator;
     WbemServices services;
 
-    public void ExecNotificationQuery(string query, void* sink)
+    public void ExecNotificationQuery(string query, WbemObjectSink.Interface sink)
     {
         var queryBstr = Ole32.SysAllocString(query);
         var result = services.ExecNotificationQueryAsync("WQL", queryBstr, WBEM_FLAG_SEND_STATUS, default, sink);
@@ -46,7 +46,7 @@ public unsafe class WMIContext : IDisposable
             throw new Exception($"Korn.Com.WMIProcessWatcher: Unable to execute notification query. result: {result}");
     }
 
-    public void CancelAsyncCall(void* sink)
+    public void CancelAsyncCall(WbemObjectSink.Interface sink)
     {
         var result = services.CancelAsyncCall(sink);
         if (result < 0)

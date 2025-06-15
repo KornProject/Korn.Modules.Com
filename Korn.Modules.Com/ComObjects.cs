@@ -59,21 +59,21 @@ public unsafe static class Extensions
         char* query,
         uint flags,
         WbemContext context,
-        void* implementation)
+        WbemObjectSink.Interface implementation)
     {
         fixed (char* queryLanguagePointer = queryLanguage)
-            return ((delegate* unmanaged<WbemServices, char*, char*, uint, WbemContext, void*, int>)self[23])(
+            return ((delegate* unmanaged<WbemServices, char*, char*, uint, WbemContext, WbemObjectSink, int>)self[23])(
                 self.As<WbemServices>(),
                 queryLanguagePointer,
                 query,
                 flags,
                 context,
-                implementation
+                implementation.As<WbemObjectSink>()
             );
     }
 
-    public static int CancelAsyncCall( this WbemServices.Interface self, void* implementation) 
-        => ((delegate* unmanaged<WbemServices, void*, int>)self[4])(self.As<WbemServices>(), implementation);
+    public static int CancelAsyncCall( this WbemServices.Interface self, WbemObjectSink.Interface implementation) 
+        => ((delegate* unmanaged<WbemServices, WbemObjectSink, int>)self[4])(self.As<WbemServices>(), implementation.As<WbemObjectSink>());
 
     public static int Get(this WbemClassObject.Interface self, ReadOnlySpan<char> name, int flags, OleVariant* variant, int* type, int* flavor)
     {
