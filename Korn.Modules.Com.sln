@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Modules.Com", "Korn.Mo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Korn", "Korn", "{44C374EF-AF8C-42EF-96B8-D58FC9097448}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Utils.WinApi", "..\Korn.Utils.WinApi\Korn.Utils.WinApi\Korn.Utils.WinApi.csproj", "{524B8EAD-553F-44F9-AD02-D5A827CFF587}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Modules.WinApi", "..\Korn.Modules.WinApi\Korn.Modules.WinApi\Korn.Modules.WinApi.csproj", "{524B8EAD-553F-44F9-AD02-D5A827CFF587}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{9F597D32-E7B8-4296-8688-1427FC573CE4}"
 EndProject

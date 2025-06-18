@@ -6,23 +6,29 @@ public class ProcessWatcher : IDisposable
 {
     public ProcessWatcher()
     {
+        creationDelegate = OnProcessCreated;
+        destructionDelegate = OnProcessDestructed;
+
         context = new OleContext();
         creationWatcher = new ProcessCreationWatcher(context);
-        creationWatcher.SetHandler(OnProcessCreated);
+        creationWatcher.SetHandler(creationDelegate);
 
         destructionWatcher = new ProcessDestructionWatcher(context);
-        destructionWatcher.SetHandler(OnProcessDestructed);
+        destructionWatcher.SetHandler(destructionDelegate);
     }
+
+    ProcessCreatedDelegate creationDelegate;
+    ProcessDestructedDelegate destructionDelegate;
 
     OleContext context;
     ProcessCreationWatcher creationWatcher;
     ProcessDestructionWatcher destructionWatcher;
 
     public Action<CreatedProcess>? ProcessStarted;
-    public Action<DestructredProcess>? ProcessStopped;
+    public Action<DestructedProcess>? ProcessStopped;
 
     void OnProcessCreated(CreatedProcess process) => ProcessStarted?.Invoke(process);
-    void OnProcessDestructed(DestructredProcess process) => ProcessStopped?.Invoke(process);
+    void OnProcessDestructed(DestructedProcess process) => ProcessStopped?.Invoke(process);
 
     bool disposed;
     public void Dispose()

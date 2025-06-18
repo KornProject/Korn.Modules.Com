@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Korn.Utils.WinApi\Korn.Utils.WinApi\Korn.Utils.WinApi.csproj" />
+    <ProjectReference Include="..\..\Korn.Core\Korn.Core\Korn.Core.csproj" />
   </ItemGroup>
 
 </Project>

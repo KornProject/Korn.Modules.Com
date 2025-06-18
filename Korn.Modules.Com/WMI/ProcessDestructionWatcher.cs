@@ -56,7 +56,7 @@ public unsafe class ProcessDestructionWatcher
             processStartHandler = Marshal.GetFunctionPointerForDelegate(handler);
         }
 
-        void HandleProcessDestructed(DestructredProcess process)
+        void HandleProcessDestructed(DestructedProcess process)
         {
             if (processStartHandler == default)
                 return;
@@ -74,7 +74,7 @@ public unsafe class ProcessDestructionWatcher
 
             for (var index = 0; index < count; index++)
             {
-                var process = new DestructredProcess();
+                var process = new DestructedProcess();
                 var obj = array[index];
 
                 result = obj.Get("ProcessId", default, &property1, null, null);
