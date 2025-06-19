@@ -1,7 +1,7 @@
-﻿using Korn.Com.Wmi.Internal;
+﻿using Korn.Modules.Com.Wmi.Internal;
 using System;
 
-namespace Korn.Com.Wmi;
+namespace Korn.Modules.Com.Wmi;
 public class ProcessWatcher : IDisposable
 {
     public ProcessWatcher()

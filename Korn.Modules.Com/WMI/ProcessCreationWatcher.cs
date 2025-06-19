@@ -1,9 +1,10 @@
-﻿using Korn.Com.Wmi.Internal;
-using Korn.Utils;
+﻿using Korn.Modules.Com.Wmi.Internal;
+using Korn.Modules.WinApi;
+using Korn.Modules.WinApi.Ole;
 using System;
 using System.Runtime.InteropServices;
 
-namespace Korn.Com.Wmi;
+namespace Korn.Modules.Com.Wmi;
 public unsafe class ProcessCreationWatcher : IDisposable
 {
     public ProcessCreationWatcher(OleContext context)

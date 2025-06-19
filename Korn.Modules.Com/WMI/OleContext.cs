@@ -1,7 +1,8 @@
-﻿using Korn.Utils;
+﻿using Korn.Modules.WinApi;
+using Korn.Modules.WinApi.Ole;
 using System;
 
-namespace Korn.Com.Wmi.Internal;
+namespace Korn.Modules.Com.Wmi.Internal;
 public unsafe class OleContext : IDisposable
 {
     const uint WBEM_FLAG_SEND_STATUS = 0x80;
@@ -14,7 +15,7 @@ public unsafe class OleContext : IDisposable
         if (result < 0)
             throw new Exception($"Korn.Com.WMIProcessWatcher: Unable to co initialize. result: {result}");
 
-        result = Ole32.CoInitializeSecurity(null, CoAuthSvc.Register, null, RpcAuthnLevel.Default, RpcImplLevel.Impersonate, null, EoleAuthenticationCapabilities.None);
+        result = Ole32.CoInitializeSecurity(null, CoAuthSvc.Register, null, RpcAuthnLevel.Default, RpcImplLevel.Impersonate, null, OleAuthenticationCapabilities.None);
         if (result < 0)
             throw new Exception($"Korn.Com.WMIProcessWatcher: Unable to co initialize security. result: {result}");
 
@@ -30,7 +31,7 @@ public unsafe class OleContext : IDisposable
             throw new Exception($"Korn.Com.WMIProcessWatcher: Unable to connect to server. result: {result}");
         this.services = services;
 
-        result = Ole32.CoSetProxyBlanket(*(void**)&services, RpcAuthnSvc.WinNT, RpcAuthzSvc.None, null, RpcAuthnLevel.Call, RpcImplLevel.Impersonate, default, EoleAuthenticationCapabilities.None);
+        result = Ole32.CoSetProxyBlanket(*(void**)&services, RpcAuthnSvc.WinNT, RpcAuthzSvc.None, null, RpcAuthnLevel.Call, RpcImplLevel.Impersonate, default, OleAuthenticationCapabilities.None);
         if (result < 0)
             throw new Exception($"Korn.Com.WMIProcessWatcher: Unable to set proxy blanket. result: {result}");
     }

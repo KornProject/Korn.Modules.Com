@@ -1,2 +1,2 @@
-﻿namespace Korn.Com.Wmi;
+﻿namespace Korn.Modules.Com.Wmi;
 public delegate void ProcessDestructedDelegate(DestructedProcess process);

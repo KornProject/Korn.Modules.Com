@@ -1,13 +1,12 @@
-﻿using System;
-using Korn.Utils;
-using Korn.Com.Internal;
-using System.Threading;
-using System.Runtime.InteropServices;
+﻿using Korn.Modules.WinApi.Ole;
+using System;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Threading;
 using static System.Runtime.InteropServices.LayoutKind;
 
 #pragma warning disable CS8500 // This takes the address of, gets the size of, or declares a pointer to a managed type
-namespace Korn.Com;
+namespace Korn.Modules.Com;
 public unsafe static class Extensions
 {
     public static T As<T>(this IUnknown.Interface self) => *(*(T**)&self + 1);
